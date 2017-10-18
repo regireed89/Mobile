@@ -1,13 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class ChangeTileColor : MonoBehaviour
 {
-    private bool currentTile;
-    private bool tagged;
+    public TileData data;
+    public List<GameObject> tiles;
+    private void Start()
+    {
+        data.tagged = false;
+        data = ScriptableObject.CreateInstance<TileData>();
+        tiles = GameObject.FindGameObjectsWithTag("Tile").ToList<GameObject>();
+    }
     private void Update()
     {
+        bool alltagged = false;
+        foreach(var v in tiles)
+        {
+            if (!v.GetComponent<ChangeTileColor>().data.tagged)
+            {
+                alltagged = false;
+                break;
+            }
+            else
+            {
+                alltagged = true;
+            }
+        }
+        if(alltagged)
+        {
+            foreach (var v in tiles)
+                v.GetComponent<Renderer>().material.color = Color.green;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -17,17 +41,19 @@ public class ChangeTileColor : MonoBehaviour
             {
                 if (hit.collider == GetComponent<Collider>())
                 {
-                    currentTile = true;
-                    tagged = true;
-                    if (currentTile == true && tagged == true)
+                    if (data.tagged == true)
+                        return;
+                    data.currentTile = true;
+                    data.tagged = true;
+                    if (data.currentTile == true && data.tagged == true)
                         GetComponent<Renderer>().material.color = Color.black;
-                    if (tagged == true && currentTile == false)
-                    {
-                        currentTile = false;
-                        GetComponent<Renderer>().material.color = Color.blue;
-                    }
+                }
+                if(hit.collider != GetComponent<Collider>() && data.tagged == true)
+                {
+                    data.currentTile = false;
+                    GetComponent<Renderer>().material.color = Color.blue;
                 }
             }
-        }
+        }      
      }
 }

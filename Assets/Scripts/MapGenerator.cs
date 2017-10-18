@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour {
     public Vector2 mapSize;
     [Range(0,1)]
     public float outLinePercent;
+    Transform mapHolder;
     private void Start()
     {
     }
@@ -25,8 +26,7 @@ public class MapGenerator : MonoBehaviour {
         for (int i = 0; i < mapSize.x; i++)
         {
             for(int j = 0; j < mapSize.y; j++)
-            {
-                
+            {             
                 Vector3 tilePosition = new Vector3(-mapSize.x/2 + 0.5f + i, 0, -mapSize.y / 2 + 0.5f + j);
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * (1 - outLinePercent);
