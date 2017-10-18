@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
     public Transform tilePrefab;
     public Vector2 mapSize;
+    [HideInInspector]
+    public List<Transform> tiles;
     [Range(0,1)]
     public float outLinePercent;
     private void Start()
@@ -30,6 +34,7 @@ public class MapGenerator : MonoBehaviour {
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * (1 - outLinePercent);
                 newTile.parent = mapHolder;
+                tiles.Add(newTile);
             }
         }
     }
