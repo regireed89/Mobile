@@ -8,16 +8,15 @@ public class ChangeTileColor : MonoBehaviour
     private bool tagged;
     private void Update()
     {
-        if (Input.touchCount == 1)
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider == GetComponent<Collider>())
                 {
-                   
                     currentTile = true;
                     tagged = true;
                     if (currentTile == true && tagged == true)
