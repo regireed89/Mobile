@@ -1,27 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MapGenerator : MonoBehaviour {
 
-    public Transform tilePrefab;
 
+    public Transform tilePrefab;
+    public List<GameObject> tiles;
     public Vector2 mapSize;
     [Range(0,1)]
     public float outLinePercent;
     Transform mapHolder;
-
     
     private void Start()
     {
+        tiles = GameObject.FindGameObjectsWithTag("Tile").ToList<GameObject>();
+    }
+
+    private void Update()
+    {
+        bool alltagged = false;
+        foreach (var v in tiles)
+        {
+            if (!v.GetComponent<ChangeTileColor>().data.tagged)
+            {
+                alltagged = false;
+                break;
+            }
+            else
+            {
+                alltagged = true;
+            }
+        }
+        if (alltagged)
+        {
+            foreach (var v in tiles)
+            {
+                v.GetComponent<Renderer>().material.color = Color.green;
+            }
+            SceneManager.LoadScene("0.Main");
+        }
     }
 
     public void GenerateMap()
     {
         string holderName = "Generated Map";
-        if(transform.Find(holderName))
+        if (transform.Find(holderName))
         {
-            DestroyImmediate(transform.Find(holderName).gameObject);
+            DestroyImmediate(transform.Find(holderName).gameObject, false);
         }
         Transform mapHolder = new GameObject(holderName).transform;
         mapHolder.parent = transform;
