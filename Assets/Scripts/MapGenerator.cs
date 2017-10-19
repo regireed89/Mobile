@@ -5,17 +5,19 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour {
 
     public Transform tilePrefab;
+
     public Vector2 mapSize;
     [Range(0,1)]
     public float outLinePercent;
     Transform mapHolder;
+
+    
     private void Start()
     {
     }
 
     public void GenerateMap()
     {
-        
         string holderName = "Generated Map";
         if(transform.Find(holderName))
         {
