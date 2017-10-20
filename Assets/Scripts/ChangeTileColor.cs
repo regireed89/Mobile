@@ -4,10 +4,9 @@ using UnityEngine;
 public class ChangeTileColor : MonoBehaviour
 {
     
-    public TileData data;
-    
-    public List<GameObject> taggedTiles;
+    public TileData data; 
     public GameObject active;
+ 
     private void Start()
     {
         data = ScriptableObject.CreateInstance<TileData>();
@@ -29,7 +28,6 @@ public class ChangeTileColor : MonoBehaviour
                     if (data.currentTile == true)
                     {
                         data.tagged = true;
-                        taggedTiles.Add(this.gameObject);
                         GetComponent<Renderer>().material.color = Color.red;
                     }
                 }
@@ -41,5 +39,5 @@ public class ChangeTileColor : MonoBehaviour
                 }
             }
         }
-    }
+    } 
 }

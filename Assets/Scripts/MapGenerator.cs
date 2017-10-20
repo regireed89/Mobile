@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class MapGenerator : MonoBehaviour {
 
-
+    
     public Transform tilePrefab;
     public List<GameObject> tiles;
     public Vector2 mapSize;
+    
     [Range(0,1)]
     public float outLinePercent;
     Transform mapHolder;
@@ -18,7 +20,12 @@ public class MapGenerator : MonoBehaviour {
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile").ToList<GameObject>();
     }
-
+    public void OnInspectorGUI()
+    {
+        EditorGUILayout.Slider(outLinePercent, 0, 1);
+        EditorGUILayout.Slider(mapSize.x, 3, 10);
+        EditorGUILayout.Slider(mapSize.y, 3, 10);
+    }
     private void Update()
     {
         bool alltagged = false;
