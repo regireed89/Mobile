@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ChangeTileColor : MonoBehaviour
 {
-    
-    public TileData data; 
-    public GameObject active;
- 
+
+    public TileData data;
+
     private void Start()
     {
         data = ScriptableObject.CreateInstance<TileData>();
-        data.tagged = false;              
+        data.tagged = false;
     }
 
     private void Update()
@@ -22,8 +21,8 @@ public class ChangeTileColor : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider == GetComponent<Collider>())
-                {              
-                    
+                {
+
                     data.currentTile = true;
                     if (data.currentTile == true)
                     {
@@ -39,5 +38,5 @@ public class ChangeTileColor : MonoBehaviour
                 }
             }
         }
-    } 
+    }
 }

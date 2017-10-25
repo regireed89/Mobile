@@ -6,5 +6,6 @@ public class TileData : ScriptableObject {
 
     public bool currentTile;
     public bool tagged;
+    public List<GameObject> neighbor;
 
 }
