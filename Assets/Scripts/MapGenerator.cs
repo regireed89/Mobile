@@ -21,8 +21,10 @@ namespace Tile
 
         private void Start()
         {
+            int x = Random.Range(3, 10);
+            mapSize.x = x;
+            mapSize.y = x;
             tiles = GameObject.FindGameObjectsWithTag("Tile").ToList<GameObject>();
-
             foreach (GameObject g in tiles)
                 GetNeighbors(g);
         }

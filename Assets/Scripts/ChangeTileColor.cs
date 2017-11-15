@@ -25,9 +25,9 @@ namespace Tile
                 {
                     if (hit.collider == GetComponent<Collider>())
                     {
-                        foreach (GameObject g in m.current.GetComponent<TileData>().neighbor)
-                            if (this.gameObject != g)
-                                return;
+                        //foreach (GameObject g in m.current.GetComponent<TileData>().neighbor)
+                        //    if (this.gameObject != g)
+                        //        return;
                         m.current = this.gameObject;
                         data.currentTile = true;
                         if (data.currentTile == true)
