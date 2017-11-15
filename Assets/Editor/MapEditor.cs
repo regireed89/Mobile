@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
-[CustomEditor(typeof(MapGenerator))]
-public class MapEditor : Editor {
-
-    public override void OnInspectorGUI()
+namespace Tile
+{
+    [CustomEditor(typeof(MapGenerator))]
+    public class MapEditor : Editor
     {
-        base.OnInspectorGUI();
-        MapGenerator map = target as MapGenerator;
-        map.GenerateMap();
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            MapGenerator map = target as MapGenerator;
+            map.GenerateMap();
+        }
+
     }
-	
 }
