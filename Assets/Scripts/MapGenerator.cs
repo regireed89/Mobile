@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
 namespace Tile
 {
-
-
     public class MapGenerator : MonoBehaviour
     {
 
@@ -28,12 +25,6 @@ namespace Tile
 
             foreach (GameObject g in tiles)
                 GetNeighbors(g);
-        }
-        public void OnInspectorGUI()
-        {
-            EditorGUILayout.Slider(outLinePercent, 0, 1);
-            EditorGUILayout.Slider(mapSize.x, 3, 10);
-            EditorGUILayout.Slider(mapSize.y, 3, 10);
         }
         private void Update()
         {
