@@ -8,7 +8,7 @@ public class MenuBehaviour : MonoBehaviour {
     public Canvas Instructions;
 	// Use this for initialization
 	void Start () {
-		
+        Instructions.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
