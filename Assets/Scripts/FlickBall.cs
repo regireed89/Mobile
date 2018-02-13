@@ -30,7 +30,7 @@ public class FlickBall : MonoBehaviour
             var dis = startPos - endPos;
             var time = startTime - endTIme;
 
-            rb.AddForce(dis/(time/2), 0);
+            rb.AddForce(dis/(time * 4), 0);
         }
     }
 }
